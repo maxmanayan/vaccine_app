@@ -1,6 +1,7 @@
 import { Button } from 'semantic-ui-react'
 import {useState, useEffect} from 'react';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 const Viruses = () => {
   useEffect(()=>{
@@ -12,6 +13,7 @@ const Viruses = () => {
   const getBugs = async () => {
     try {
       let res = await axios.get("/api/bugs")
+      setBugs(res.data)
     } catch (err) {
       console.log(err)
     }
@@ -20,9 +22,12 @@ const Viruses = () => {
   const renderBugs = () => {
     return bugs.map( bug => {
       return(
-        <div>
-          {bug.name}
-        </div>
+        <Link to={`/viruses/${bug.id}`}> 
+          <div>
+            {bug.name}
+          </div>
+        </Link>
+       
       )
     })
   }
