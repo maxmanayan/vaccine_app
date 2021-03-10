@@ -5,7 +5,8 @@ class Api::BugsController < ApplicationController
   end
 
   def show
-    render json: Bug.find(params[:id])
+    @bug = Bug.find(params[:id])
+    render json: {bug: @bug, vaccines: @bug.vaccines}
   end
 
 
