@@ -6,6 +6,11 @@ class Api::VaccinesController < ApplicationController
     render json: @bug.vaccines
   end
 
+  def show 
+    @vaccine = @bug.vaccines.find(params[:id])
+
+    render json: @vaccine
+  end
 
   def create 
    @vaccine = @bug.vaccines.new(vaccine_params)
@@ -17,7 +22,7 @@ class Api::VaccinesController < ApplicationController
   end
 
 
-  def create 
+  def update
     @vaccine = @bug.vaccines.find(params[:id])
     if vaccine.update(vaccine_params)
      render json: @vaccine

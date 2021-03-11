@@ -42,19 +42,20 @@ const Bug = () => {
 
 
   return(
-    <>
-      <Card fluid color='red'/>
+    <Card.Group>
+      <Card fluid color='red'>
         <Card.Content>
-          <Card.Header style={{border: '1px solid black', display: 'flex', justifyContent: 'space-between', margin: '2em'}}>
-            {bug.name}
-            <div>
-              <Button onClick={deleteVirus} color='red'>Delete</Button>
-              <Link to={`/bugs/${id}/update`}>
-                <Button>Update</Button>
-              </Link>
-              <Button onClick={() => history.goBack()}>Go Back</Button>
-            </div>
-          </Card.Header>
+            <Card.Header style={{display: 'flex', justifyContent: 'space-between', margin: '2em'}}>
+              {bug.name}
+              <div>
+                <Button onClick={deleteVirus} color='red'>Delete</Button>
+                <Link to={`/bugs/${id}/update`}>
+                  <Button>Update</Button>
+                </Link>
+                <Button onClick={() => history.goBack()}>Go Back</Button>
+              </div>
+            </Card.Header>
+
           <Button>New Vaccine</Button>
           <Card.Group>
             {renderVaccines()}
@@ -62,7 +63,9 @@ const Bug = () => {
           </Card.Group>
 
         </Card.Content>
-    </>
+      </Card>
+    </Card.Group>
+  
   )
 }
 
