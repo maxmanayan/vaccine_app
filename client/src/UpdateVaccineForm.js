@@ -1,11 +1,12 @@
 import axios from 'axios';
 import { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams,useHistory } from 'react-router-dom';
 import { Form, Checkbox, Button } from 'semantic-ui-react';
 
 
 const UpdateVaccineForm = () => {
   const { bug_id, id} = useParams()
+  const history = useHistory()
   const [vaccine, setVaccine] = useState(null)
   const [name, setName] = useState("")
   const [effectiveness, setEffectiveness] = useState("")
@@ -34,11 +35,13 @@ const UpdateVaccineForm = () => {
     }
   }
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
 
     try {
-      axios.put(`/api/bugs/${bug_id}`)
+      let res = await axios.put(`/api/bugs/${bug_id}/vaccines/${id}`, {name, effectiveness, maker})
+      history.push(`/bugs/${bug_id}`)
+      window.location.reload()
     } catch (err) {
       console.log(err)
     }
@@ -59,10 +62,8 @@ const UpdateVaccineForm = () => {
           <label>Maker</label>
           <input value={maker} onChange={(e)=>setMaker(e.target.value)} defaultValue={maker} placeholder='Maker' />
         </Form.Field>
-        <Form.Field>
-          <Checkbox label='I agree to the Terms and Conditions' />
-        </Form.Field>
         <Button type='submit'>Submit</Button>
+        <Button onClick={()=>history.push(`/bugs/${bug_id}`)}>Cancel</Button>
       </Form>
       <p>Bug ID: {bug_id}</p>
       <p>ID: {id}</p>

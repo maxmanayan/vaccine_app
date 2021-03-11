@@ -8,6 +8,7 @@ import NavBar from './Navbar';
 import UpdateBugForm from './UpdateBugForm';
 import NewBugForm from './NewBugForm';
 import UpdateVaccineForm from './UpdateVaccineForm';
+import NewVaccineForm from './NewVaccineForm';
 
 
 function App() {
@@ -20,6 +21,7 @@ function App() {
         <Route exact path='/bugs/new' component={NewBugForm} />
         <Route exact path='/bugs/:id' component={Bug}/>
         <Route exact path='/bugs/:id/update' component={UpdateBugForm} />
+        <Route exact path='/bugs/:bug_id/vaccines' component={NewVaccineForm} />
         <Route exact path='/bugs/:bug_id/vaccines/:id/edit' component={UpdateVaccineForm} />
       </Switch>
     </div>

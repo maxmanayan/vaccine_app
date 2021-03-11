@@ -35,7 +35,7 @@ const Bug = () => {
   }
 
 
-  const deleteVirus = async () => {
+  const deleteBug = async () => {
     let res = await axios.delete(`/api/bugs/${id}`)
     history.push('/')
   }
@@ -48,18 +48,18 @@ const Bug = () => {
             <Card.Header style={{display: 'flex', justifyContent: 'space-between', margin: '2em'}}>
               {bug.name}
               <div>
-                <Button onClick={deleteVirus} color='red'>Delete</Button>
+                <Button onClick={deleteBug} color='red'>Delete</Button>
                 <Link to={`/bugs/${id}/update`}>
                   <Button>Update</Button>
                 </Link>
-                <Button onClick={() => history.goBack()}>Go Back</Button>
+                <Button onClick={() => history.push('/')}>Go Back</Button>
               </div>
             </Card.Header>
-
-          <Button>New Vaccine</Button>
+          <Link to={`/bugs/${id}/vaccines`}>
+            <Button>New Vaccine</Button>
+          </Link>
           <Card.Group>
             {renderVaccines()}
-            <Vaccine />
           </Card.Group>
 
         </Card.Content>

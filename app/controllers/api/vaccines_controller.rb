@@ -24,7 +24,7 @@ class Api::VaccinesController < ApplicationController
 
   def update
     @vaccine = @bug.vaccines.find(params[:id])
-    if vaccine.update(vaccine_params)
+    if @vaccine.update(vaccine_params)
      render json: @vaccine
     else 
      render json: {errors: vaccine.errors}, status: 422
